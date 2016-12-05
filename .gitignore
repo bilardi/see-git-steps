@@ -1,0 +1,11 @@
+*#*#
+*~
+
+test/bashunit
+test/bashunit.sh
+
+test/sharness
+test/Makefile
+test/sharness.sh
+test/aggregate-results.sh
+test/test-results
