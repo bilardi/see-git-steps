@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.1.0"
+VERSION="0.2.0"
 TEST=0
+VERBOSE=0
 
 # functions
 
@@ -124,10 +125,12 @@ function print {
     if [ -z "$(git log --pretty=oneline | grep $commit | awk '{if ($2~/step/ && $3~/[0-9]/) print $3}')" ]; then
 	smart=1
     fi
-    if [[ "$smart" == "1" ]]; then
+    if [[ "$VERBOSE" == "0" ]] && [[ "$smart" == "1" ]]; then
 	git log $commit --pretty=oneline -n 1
-    else
+    elif [[ "$smart" == "1" ]] || [[ "$VERBOSE" == "0" ]]; then
 	git log $commit --pretty=oneline -n 1 --name-only
+    else
+	git log $commit --pretty=oneline -p -1
     fi
 }
 
@@ -138,6 +141,7 @@ while true; do
 	-h | --help ) help ;;
 	-V | --version ) version; exit 1; ;;
 	-t | --test ) TEST=1; gitTest; exit 1; ;;
+	-v | --verbose ) VERBOSE=1 ;;
 	-- ) shift; break ;;
 	* ) break ;;
     esac
