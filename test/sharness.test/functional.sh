@@ -41,4 +41,12 @@ test_expect_success "function version --test" "
     $BIN --test | grep 'OK'
 "
 
+test_expect_success "check where Initial commit is in the output" "
+    $BIN | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 is in the output" "
+    $BIN | head -n 8 | tail -n 1 | grep 'step 2 -'
+"
+
 test_done
