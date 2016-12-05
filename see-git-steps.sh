@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.0.2"
+VERSION="0.0.3"
+TEST=0
 
 # functions
 
@@ -80,14 +81,49 @@ EOF
     exit 1
 }
 
+# Echo of the red message in STDERR
+#
+# Args:
+#   message: string: error message
+# Returns:
+#   string: the red message in STDERR
+function error {
+    echo -e "\033[0;31m$@\033[0m" 1>&2
+}
+
+# Test if git is installed
+#
+# Returns:
+#   mixed: string: OK, KO or error message
+function gitTest {
+    local isInstalled=1
+    local gitVersion=$(git --version | sed 's/^[^0-9]*\([0-9\.]*\)[^0-9]*$/\1/i')
+    local gitVersionLevel=$(echo ${gitVersion%%.*})
+    if [[ ! "$gitVersionLevel" =~ ^[0-9]+$ ]]; then
+	isInstalled=0
+    fi
+    if [[ "$isInstalled" == "0" ]] && [[ "$TEST" == "0" ]]; then
+	error 'Error: this script uses git program and git is not installed!'
+	help
+    elif [[ "$isInstalled" == "0" ]] && [[ "$TEST" == "1" ]]; then
+	echo "KO"
+    elif [[ "$isInstalled" == "1" ]] && [[ "$TEST" == "1" ]]; then
+	echo "OK"
+    fi
+}
+
 # main
 ## get options of the script
 while true; do
     case "$1" in
 	-h | --help ) help ;;
 	-V | --version ) version; exit 1; ;;
+	-t | --test ) TEST=1; gitTest; exit 1; ;;
 	-- ) shift; break ;;
 	* ) break ;;
     esac
     shift
 done
+
+## test if git is installed
+gitTest
