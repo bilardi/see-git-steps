@@ -33,4 +33,12 @@ test_expect_success "function version --help" "
     $BIN --help | grep 'SYNOPSIS'
 "
 
+test_expect_success "function version -t" "
+    $BIN -t | grep 'OK'
+"
+
+test_expect_success "function version --test" "
+    $BIN --test | grep 'OK'
+"
+
 test_done

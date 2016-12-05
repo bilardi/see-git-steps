@@ -16,3 +16,6 @@ assertLike "function version -V" "$(./$BIN -V)" "[0-9]+.[0-9]+.[0-9]+"
 assertLike "function version --version" "$(./$BIN --version)" "[0-9]+.[0-9]+.[0-9]+"
 assertLike "function version -h" "$(./$BIN -h | grep SYNOPSIS)" "SYNOPSIS"
 assertLike "function version --help" "$(./$BIN --help | grep SYNOPSIS)" "SYNOPSIS"
+
+assertLike "function getTest -t" "$(./$BIN -t)" "OK"
+assertLike "function getTest --test" "$(./$BIN --test)" "OK"
