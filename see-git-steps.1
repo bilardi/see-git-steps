@@ -1,0 +1,63 @@
+.\" Generated with Ronnjs 0.3.8
+.\" http://github.com/kapouer/ronnjs/
+.
+.TH "SEE\-GIT\-STEPS" "1" "December 2016" "" ""
+.
+.SH "NAME"
+\fBsee-git-steps\fR \-\- See git commits step by step
+.
+.SH "SYNOPSIS"
+\fBsee\-git\-steps\fR [\-hVtvis] [\-c <commit>]
+.
+.SH "OPTIONS"
+  \fB\-h, \-\-help\fR              display this message
+.
+.P
+  \fB\-V, \-\-version\fR           output version
+.
+.P
+  \fB\-t, \-\-test\fR              display the result of the basic test
+.
+.P
+  \fB\-v, \-\-verbose\fR           enable verbose output
+.
+.P
+  \fB\-c, \-\-commit\fR            number of <commit> where to start
+.
+.P
+  \fB\-i, \-\-interaction\fR       display one commit at a time and expect enter or [yY] to display the next commit
+.
+.P
+  \fB\-s, \-\-skip\-question\fR     no display the question between each commit
+.
+.SH "USAGE"
+  $ see\-git\-steps \-t
+    display OK if you have installed on your device git program
+    display KO if you don\'t have installed on your device git program
+.
+.P
+  $ see\-git\-steps \-c 9680dc4
+    display only description of the commits from old to new until the <commit>,
+    then if the description starts with \fBstep [0\-9]*\fR, display also the file of the commit
+.
+.P
+  $ see\-git\-steps \-c 9680dc4 \-v
+    display only description of the commits from old to new until the <commit>,
+    then display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
+.
+.P
+  $ see\-git\-steps \-v \-i \-s
+    display one commit at a time and expect enter or [yY] to display the next commit
+    display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
+.
+.SH "AUTHOR"
+  Alessandra Bilardi \fIalessandra\.bilardi@gmail\.com\fR
+.
+.SH "REPORTING BUGS"
+  https://github\.com/bilardi/see\-git\-steps/issues
+.
+.SH "SEE ALSO"
+  \fBgit\fR(1), \fBgit\-log\fR(1)
+.
+.SH "LICENSE"
+  MIT (C) Copyright Alessandra Bilardi 2016
