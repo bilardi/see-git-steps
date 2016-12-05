@@ -22,3 +22,6 @@ assertLike "function getTest --test" "$(./$BIN --test)" "OK"
 
 assertLike "check where Initial commit is in the output" "$(./$BIN | head -n 1)" "Initial commit"
 assertLike "check where step 2 is in the output" "$(./$BIN | head -n 8 | tail -n 1)" "step 2 -"
+
+assertLike "check where Initial commit is in the verbose output" "$(./$BIN -v | head -n 1)" "Initial commit"
+assertLike "check where step 2 is in the verbose output" "$(./$BIN --verbose | head -n 256 | tail -n 1)" "step 2 -"
