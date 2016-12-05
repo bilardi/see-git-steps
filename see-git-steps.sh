@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.0.3"
+VERSION="0.1.0"
 TEST=0
 
 # functions
@@ -112,6 +112,25 @@ function gitTest {
     fi
 }
 
+# git result
+#
+# Args:
+#   commit: string: commit id
+# Returns:
+#   string: git result
+function print {
+    local commit=$1
+    local smart=0
+    if [ -z "$(git log --pretty=oneline | grep $commit | awk '{if ($2~/step/ && $3~/[0-9]/) print $3}')" ]; then
+	smart=1
+    fi
+    if [[ "$smart" == "1" ]]; then
+	git log $commit --pretty=oneline -n 1
+    else
+	git log $commit --pretty=oneline -n 1 --name-only
+    fi
+}
+
 # main
 ## get options of the script
 while true; do
@@ -127,3 +146,9 @@ done
 
 ## test if git is installed
 gitTest
+
+## run the job
+commits=$(git log --pretty=oneline | tac | awk '{print $1}')
+for commit in ${commits[@]}; do
+    print $commit
+done
