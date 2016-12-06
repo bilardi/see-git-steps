@@ -1,7 +1,7 @@
 # See git commit step by step
 
 This package contains a script to see step by step the git commits.
-It is part of the educational repositories to learn how to write stardard code and common uses of the TDD.
+It is part of the [educational repositories](https://github.com/pandle/materials) to learn how to write stardard code and common uses of the TDD.
 
 ## Installation
 
@@ -13,9 +13,7 @@ Global installation
 
     make install
 
-If you want to test it, there are some dependencies but the script will install everything it needs.
-
-Test installation
+If you want to test it, there are some dependencies but the test script will install everything it needs.
 
     make test
 

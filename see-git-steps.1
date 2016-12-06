@@ -7,7 +7,7 @@
 \fBsee-git-steps\fR \-\- See git commits step by step
 .
 .SH "SYNOPSIS"
-\fBsee\-git\-steps\fR [\-hVtvis] [\-c <commit>]
+\fBsee\-git\-steps\fR [\-hVtvis] [\-c `commit`]
 .
 .SH "OPTIONS"
   \fB\-h, \-\-help\fR              display this message
@@ -22,7 +22,7 @@
   \fB\-v, \-\-verbose\fR           enable verbose output
 .
 .P
-  \fB\-c, \-\-commit\fR            number of <commit> where to start
+  \fB\-c, \-\-commit\fR            number of \fBcommit\fR where to start
 .
 .P
   \fB\-i, \-\-interaction\fR       display one commit at a time and expect enter or [yY] to display the next commit
@@ -31,24 +31,59 @@
   \fB\-s, \-\-skip\-question\fR     no display the question between each commit
 .
 .SH "USAGE"
-  $ see\-git\-steps \-t
-    display OK if you have installed on your device git program
-    display KO if you don\'t have installed on your device git program
+  This script works if you have installed on your device the git program
+.
+.IP "" 4
+.
+.nf
+$ see\-git\-steps \-t
+.
+.fi
+.
+.IP "" 0
 .
 .P
-  $ see\-git\-steps \-c 9680dc4
-    display only description of the commits from old to new until the <commit>,
-    then if the description starts with \fBstep [0\-9]*\fR, display also the file of the commit
+  display OK if you have installed on your device git program
+  display KO if you don\'t have installed on your device git program
+.
+.IP "" 4
+.
+.nf
+$ see\-git\-steps \-c 9680dc4
+.
+.fi
+.
+.IP "" 0
 .
 .P
-  $ see\-git\-steps \-c 9680dc4 \-v
-    display only description of the commits from old to new until the <commit>,
-    then display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
+  display only description of the commits from old to new until the \fBcommit\fR,
+  then if the description starts with \fBstep [0\-9]*\fR, display also the file of the commit
+.
+.IP "" 4
+.
+.nf
+$ see\-git\-steps \-c 9680dc4 \-v
+.
+.fi
+.
+.IP "" 0
 .
 .P
-  $ see\-git\-steps \-v \-i \-s
-    display one commit at a time and expect enter or [yY] to display the next commit
-    display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
+  display only description of the commits from old to new until the \fBcommit\fR,
+  then display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
+.
+.IP "" 4
+.
+.nf
+$ see\-git\-steps \-v \-i \-s
+.
+.fi
+.
+.IP "" 0
+.
+.P
+  display one commit at a time and expect enter or [yY] to display the next commit
+  display the file of the commit and if the description starts with \fBstep [0\-9]*\fR, display also the diff
 .
 .SH "AUTHOR"
   Alessandra Bilardi \fIalessandra\.bilardi@gmail\.com\fR
