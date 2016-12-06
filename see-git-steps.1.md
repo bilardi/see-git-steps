@@ -27,7 +27,7 @@ see-git-steps(1) -- See git commits step by step
 
     $ see-git-steps -t
 
-  display OK if you have installed on your device git program
+  display OK if you have installed on your device git program,
   display KO if you don't have installed on your device git program
 
     $ see-git-steps -c 9680dc4
@@ -42,7 +42,7 @@ see-git-steps(1) -- See git commits step by step
 
     $ see-git-steps -v -i -s
 
-  display one commit at a time and expect enter or [yY] to display the next commit
+  display one commit at a time and expect enter or [yY] to display the next commit,
   display the file of the commit and if the description starts with `step [0-9]*`, display also the diff
 
 ## AUTHOR

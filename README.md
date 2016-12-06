@@ -23,7 +23,7 @@ Read the [guide](see-steps.1.md).
 
 ## Dev
 
-Create man (using [kapouer/ronnjs])
+Create man (using [kapouer/ronnjs](https://github.com/kapouer/ronnjs))
 
     make man
 
