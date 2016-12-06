@@ -49,12 +49,36 @@ test_expect_success "check where step 2 is in the output" "
     $BIN | head -n 8 | tail -n 1 | grep 'step 2 -'
 "
 
-test_expect_success "check where Initial commit is in the verbose output" "
+test_expect_success "check where Initial commit with -v option" "
     $BIN -v | head -n 1 | grep 'Initial commit'
 "
 
-test_expect_success "check where step 2 is in the output" "
+test_expect_success "check where step 2 with -v option" "
+    $BIN -v | head -n 256 | tail -n 1 | grep 'step 2 -'
+"
+
+test_expect_success "check where Initial commit with --verbose option" "
+    $BIN --verbose | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 with --verbose option" "
     $BIN --verbose | head -n 256 | tail -n 1 | grep 'step 2 -'
+"
+
+test_expect_success "check where Initial commit with -c option" "
+    $BIN -c eed87c9 | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 with -c option" "
+    $BIN -c eed87c9 | head -n 3 | tail -n 1 | grep 'step 2 -'
+"
+
+test_expect_success "check where Initial commit with --commit option" "
+    $BIN --commit eed87c9 | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 with --commit option" "
+    $BIN --commit eed87c9 | head -n 3 | tail -n 1 | grep 'step 2 -'
 "
 
 test_done
