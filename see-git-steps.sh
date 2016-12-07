@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.3.0"
+VERSION="0.4.0"
 TEST=0
 VERBOSE=0
 SMART=0
 COMMIT=0
+INTERACTION=0
+QUESTION=0
 
 # functions
 
@@ -130,6 +132,7 @@ function gitTest {
 function print {
     local commit=$1
     local smart=0
+    question
     if [[ "$SMART" == "1" ]]; then
 	git log $commit --pretty=oneline -n 1
     else
@@ -146,6 +149,25 @@ function print {
     fi
 }
 
+# interaction with the client
+#
+# Args:
+#   answer: string: Y or Enter or N
+# Returns:
+#   mixed: string: question or nothing
+function question {
+    if [[ "$INTERACTION" == "1" ]]; then
+	if [[ "$QUESTION" == "1" ]]; then
+	    echo
+	    error 'Do you continue [Yn]?'
+	fi
+	read -s answer
+	if [ -n "$answer" ] && [[ ! $answer =~ ^[yY]$ ]]; then
+	    exit 1
+	fi
+    fi
+}
+
 # main
 ## get options of the script
 while true; do
@@ -155,6 +177,7 @@ while true; do
 	-t | --test ) TEST=1; gitTest; exit 1; ;;
 	-v | --verbose ) VERBOSE=1 ;;
 	-c | --commit ) COMMIT="$2"; SMART=1; shift ;;
+	-i | --interaction ) INTERACTION=1; QUESTION=1 ;;
 	-- ) shift; break ;;
 	* ) break ;;
     esac
