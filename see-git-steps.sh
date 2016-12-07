@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.4.0"
+VERSION="0.5.0"
 TEST=0
 VERBOSE=0
 SMART=0
@@ -178,6 +178,7 @@ while true; do
 	-v | --verbose ) VERBOSE=1 ;;
 	-c | --commit ) COMMIT="$2"; SMART=1; shift ;;
 	-i | --interaction ) INTERACTION=1; QUESTION=1 ;;
+	-s | --skip-question ) QUESTION=0 ;;
 	-- ) shift; break ;;
 	* ) break ;;
     esac
