@@ -32,3 +32,12 @@ assertLike "check where Initial commit with -c option" "$(./$BIN -c eed87c9 | he
 assertLike "check where step 2 with -c option" "$(./$BIN -c eed87c9 | head -n 3 | tail -n 1)" "step 2 -"
 assertLike "check where Initial commit with --commit option" "$(./$BIN --commit eed87c9 | head -n 1)" "Initial commit"
 assertLike "check where step 2 with --commit option" "$(./$BIN --commit eed87c9 | head -n 3 | tail -n 1)" "step 2 -"
+
+assertLike "check where Initial commit with -i option" "$(./$BIN -i < interaction.initial.commit | head -n 2 | tail -n 1)" "Initial commit"
+assertLike "check where step 2 with -i option" "$(./$BIN -i < interaction.step.2 | head -n 11 | tail -n 1)" "step 2 -"
+assertLike "check where Initial commit with --interaction option" "$(./$BIN --interaction < interaction.initial.commit | head -n 2 | tail -n 1)" "Initial commit"
+assertLike "check where step 2 with --interaction option" "$(./$BIN --interaction < interaction.step.2 | head -n 11 | tail -n 1)" "step 2 -"
+assertLike "check where Initial commit with -i and -v options" "$(./$BIN -i -v < interaction.initial.commit | head -n 2 | tail -n 1)" "Initial commit"
+assertLike "check where step 2 with -i and -v options" "$(./$BIN -i -v < interaction.step.2 | head -n 259 | tail -n 1)" "step 2 -"
+assertLike "check where Initial commit with -i, -v and -c options" "$(./$BIN -i -v -c eed87c9 < interaction.initial.commit | head -n 2 | tail -n 1)" "Initial commit"
+assertLike "check where step 2 with -i, -v and -c options" "$(./$BIN -i -v -c eed87c9 < interaction.step.2 | head -n 6 | tail -n 1)" "step 2 -"
