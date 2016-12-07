@@ -21,7 +21,7 @@ If you want to test it, there are some dependencies but the test script will ins
 
 Read the [guide](see-git-steps.1.md).
 
-## Dev
+## Development
 
 Create man (using [kapouer/ronnjs](https://github.com/kapouer/ronnjs))
 
