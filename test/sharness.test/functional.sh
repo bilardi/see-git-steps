@@ -113,4 +113,20 @@ test_expect_success "check where step 2 with -i, -v and -c options" "
     $BIN -i -v -c eed87c9 < $path/interaction.step.2 | head -n 6 | tail -n 1 | grep 'step 2 -'
 "
 
+test_expect_success "check where Initial commit with -i, -v and -s options" "
+    $BIN -i -v -s < $path/interaction.initial.commit | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 with -i, -v and -s options" "
+    $BIN -i -v -s < $path/interaction.step.2 | head -n 256 | tail -n 1 | grep 'step 2 -'
+"
+
+test_expect_success "check where Initial commit with -i, -v, -c and -s options" "
+    $BIN -i -v -c eed87c9 -s < $path/interaction.initial.commit | head -n 1 | grep 'Initial commit'
+"
+
+test_expect_success "check where step 2 with -i, -v, -c and -s options" "
+    $BIN -i -v -c eed87c9 -s < $path/interaction.step.2 | head -n 3 | tail -n 1 | grep 'step 2 -'
+"
+
 test_done

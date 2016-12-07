@@ -41,3 +41,8 @@ assertLike "check where Initial commit with -i and -v options" "$(./$BIN -i -v <
 assertLike "check where step 2 with -i and -v options" "$(./$BIN -i -v < interaction.step.2 | head -n 259 | tail -n 1)" "step 2 -"
 assertLike "check where Initial commit with -i, -v and -c options" "$(./$BIN -i -v -c eed87c9 < interaction.initial.commit | head -n 2 | tail -n 1)" "Initial commit"
 assertLike "check where step 2 with -i, -v and -c options" "$(./$BIN -i -v -c eed87c9 < interaction.step.2 | head -n 6 | tail -n 1)" "step 2 -"
+
+assertLike "check where Initial commit with -i, -v and -s options" "$(./$BIN -i -v -s < interaction.initial.commit | head -n 1)" "Initial commit"
+assertLike "check where step 2 with -i, -v and -s options" "$(./$BIN -i -v -s < interaction.step.2 | head -n 256 | tail -n 1)" "step 2 -"
+assertLike "check where Initial commit with -i, -v, -c and -s options" "$(./$BIN -i -v -c eed87c9 -s < interaction.initial.commit | head -n 1)" "Initial commit"
+assertLike "check where step 2 with -i, -v, -c and -s options" "$(./$BIN -i -v -c eed87c9 -s < interaction.step.2 | head -n 3 | tail -n 1)" "step 2 -"
