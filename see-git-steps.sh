@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # initialize
-VERSION="0.2.1"
+VERSION="0.3.0"
 TEST=0
 VERBOSE=0
+SMART=0
+COMMIT=0
 
 # functions
 
@@ -128,15 +130,19 @@ function gitTest {
 function print {
     local commit=$1
     local smart=0
-    if [ -z "$(git log --pretty=oneline | grep $commit | awk '{if ($2~/step/ && $3~/[0-9]/) print $3}')" ]; then
-	smart=1
-    fi
-    if [[ "$VERBOSE" == "0" ]] && [[ "$smart" == "1" ]]; then
+    if [[ "$SMART" == "1" ]]; then
 	git log $commit --pretty=oneline -n 1
-    elif [[ "$smart" == "1" ]] || [[ "$VERBOSE" == "0" ]]; then
-	git log $commit --pretty=oneline -n 1 --name-only
     else
-	git log $commit --pretty=oneline -p -1
+	if [ -z "$(git log --pretty=oneline | grep $commit | awk '{if ($2~/step/ && $3~/[0-9]/) print $3}')" ]; then
+	    smart=1
+	fi
+	if [[ "$VERBOSE" == "0" ]] && [[ "$smart" == "1" ]]; then
+	    git log $commit --pretty=oneline -n 1
+	elif [[ "$smart" == "1" ]] || [[ "$VERBOSE" == "0" ]]; then
+	    git log $commit --pretty=oneline -n 1 --name-only
+	else
+	    git log $commit --pretty=oneline -p -1
+	fi
     fi
 }
 
@@ -148,6 +154,7 @@ while true; do
 	-V | --version ) version; exit 1; ;;
 	-t | --test ) TEST=1; gitTest; exit 1; ;;
 	-v | --verbose ) VERBOSE=1 ;;
+	-c | --commit ) COMMIT="$2"; SMART=1; shift ;;
 	-- ) shift; break ;;
 	* ) break ;;
     esac
@@ -160,5 +167,8 @@ gitTest
 ## run the job
 commits=$(git log --pretty=oneline | tac | awk '{print $1}')
 for commit in ${commits[@]}; do
+    if [[ "$COMMIT" != "0" ]] && [[ $commit =~ $COMMIT ]]; then
+	SMART=0
+    fi
     print $commit
 done
