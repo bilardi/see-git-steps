@@ -1,5 +1,5 @@
 {
-    "name": "See git steps",
+    "name": "bilardi/see-git-steps",
     "description": "a script to see step by step the git commits",
     "type": "library",
     "keywords": [
