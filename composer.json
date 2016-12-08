@@ -1,0 +1,24 @@
+{
+    "name": "See git steps",
+    "description": "a script to see step by step the git commits",
+    "type": "library",
+    "keywords": [
+	"git",
+	"commit",
+	"log",
+	"step"
+    ],
+    "license": "MIT",
+    "authors": [
+	{
+	    "name": "Alessandra Bilardi",
+	    "homepage": "http://alessandra.bilardi.net/"
+	}
+    ],
+    "support": {
+	"issues": "https://github.com/bilardi/see-git-steps/issues"
+    },
+    "bin": [
+	"see-git-steps.sh"
+    ]
+}
