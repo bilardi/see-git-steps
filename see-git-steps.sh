@@ -108,7 +108,7 @@ function error {
 #   mixed: string: OK, KO or error message
 function gitTest {
     local isInstalled=1
-    local gitVersion=$(git --version | sed 's/^[^0-9]*\([0-9\.]*\)[^0-9]*$/\1/i')
+    local gitVersion=$(git --version | sed 's/^[^0-9]*\([0-9\.]*\)[^0-9]*$/\1/')
     local gitVersionLevel=$(echo ${gitVersion%%.*})
     if [[ ! "$gitVersionLevel" =~ ^[0-9]+$ ]]; then
 	isInstalled=0
@@ -189,7 +189,7 @@ done
 gitTest
 
 ## run the job
-commits=$(git log --pretty=oneline | tac | awk '{print $1}')
+commits=$(git log --pretty=oneline | tail -r | awk '{print $1}')
 for commit in ${commits[@]}; do
     if [[ "$COMMIT" != "0" ]] && [[ $commit =~ $COMMIT ]]; then
 	SMART=0
